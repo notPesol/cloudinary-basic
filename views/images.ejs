@@ -5,12 +5,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Images</title>
+  <link rel="stylesheet" href="stylesheet/images.css">
 </head>
 <body>
+  <h1>Cloudinary basic</h1>
+  <div>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="upfile">
+      <input type="submit" value="Upload">
+    </form>
+  </div>
+  <br>
   <% if(images.length > 0) {%>
+    <div class="grid">
     <% for(img of images) {%> 
-      <img src="<%= baseUrl + imgSetting %>/<%= img.url %>" alt="">
+      <div class="img-box">
+        <img src="<%= baseUrl + imgSetting %>/<%= img.url %>" alt="">
+        <form action="/<%= img._id %>" method="post">
+          <input type="submit" value="ลบ">
+        </form>
+      </div>
     <% } %> 
-  <% } %>  
+    </div>
+  <% }else { %>
+    <h2>No image</h2>
+  <% } %>   
 </body>
 </html>
